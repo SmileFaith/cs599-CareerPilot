@@ -6,3 +6,8 @@ langchain
 pydantic
 python-dotenv
 python-multipart
+pdfplumber
+python-docx
+pytest
+langchain-openai
+openai

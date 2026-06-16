@@ -28,7 +28,7 @@
     <Folder Include="tests\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="docs\ai-development-guide.md" />
+    <Content Include="ai-development-guide.md" />
     <Content Include="docs\architecture.md" />
     <Content Include="docs\requirements.md" />
     <Content Include="docs\tasks.md" />

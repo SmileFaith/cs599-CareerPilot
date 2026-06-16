@@ -20,7 +20,7 @@ Setup Python Environment
 
 Acceptance Criteria:
 
-* Python 3.11
+* Python 3.12
 * Virtual environment
 * requirements.txt
 
