@@ -38,6 +38,10 @@ class LearningPlanRequest(BaseModel):
 class InterviewRequest(BaseModel):
     job_info: Dict[str, Any]
 
+class AnswerRequest(BaseModel):
+    question: str
+    answer: str
+
 @app.get("/")
 def read_root():
     return {"status": "ok"}
@@ -81,3 +85,20 @@ def generate_interview(req: InterviewRequest):
         return StandardResponse(success=True, data=data, message="Interview questions generated successfully.")
     except Exception as e:
         return StandardResponse(success=False, data={}, message=str(e))
+
+@app.post("/evaluate-answer")
+def evaluate_answer(req: AnswerRequest):
+    try:
+        result = interview_agent.evaluate_answer(
+            req.question,
+            req.answer
+        )
+        return StandardResponse(
+            success=True,
+            data=result
+        )
+    except Exception as e:
+        return StandardResponse(
+            success=False,
+            message=str(e)
+        )

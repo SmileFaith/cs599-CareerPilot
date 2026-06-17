@@ -84,6 +84,8 @@ with tab2:
 
 with tab3:
     st.header("📊 第三步：能力匹配度报告")
+    # st.write("resume_info =", st.session_state.resume_info)
+    # st.write("job_info =", st.session_state.job_info)
     if st.session_state.resume_info and st.session_state.job_info:
         if st.button("生成匹配度与差距报告"):
             with st.spinner("AI 正在比对各项能力指标..."):
@@ -194,6 +196,38 @@ with tab5:
                 st.subheader("🤝 综合行为考察")
                 for i, q in enumerate(qs.get("behavioral_questions", []), 1):
                     st.write(f"**Q{i}:** {q}")
+
+            selected_question = st.selectbox(
+                "选择一道面试题",
+                st.session_state.interview_questions.get(
+                    "technical_questions",
+                    []
+                )
+            )
+
+            user_answer = st.text_area(
+                "请输入你的回答",
+                height=200
+            )
+
+            if st.button("提交回答"):
+                response = requests.post(
+                    f"{API_BASE_URL}/evaluate-answer",
+                    json={
+                        "question": selected_question,
+                        "answer": user_answer
+                    }
+                )
+                result = response.json()
+                st.metric(
+                    "评分",
+                    result["data"]["score"]
+                )
+                st.write(
+                    result["data"]["feedback"]
+                )
+
+
     else:
         st.info("💡 请先完成「岗位分析」，AI考官网可基于JD出题。")
 

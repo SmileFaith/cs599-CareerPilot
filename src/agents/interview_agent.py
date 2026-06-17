@@ -63,8 +63,8 @@ class InterviewAgent:
             只返回JSON。
             格式：
             {{
-                "技术问题": [],
-                "行为问题": []
+                "technical_questions": [],
+                "behavioral_questions": []
             }}
             岗位信息：
             {job_info}
@@ -114,11 +114,20 @@ class InterviewAgent:
             prompt = f"""
             你是高级技术面试官。
             评估候选人回答。
+            评分要求：
+            1. 满分100分
+            2. 最低0分
+            3. 只允许返回整数
+            4. 综合考虑：
+               - 技术正确性（40分）
+               - 完整性（30分）
+               - 表达清晰度（20分）
+               - 工程实践意识（10分）
             只返回JSON。
             格式：
             {{
-                "得分": 0,
-                "反馈": ""
+                "score": 0,
+                "feedback": ""
             }}
             问题：
             {question}

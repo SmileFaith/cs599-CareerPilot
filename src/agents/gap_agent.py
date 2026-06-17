@@ -23,6 +23,7 @@ class GapAnalysisAgent:
             llm_client: An LLM client instance supporting structured output.
         """
         self.llm_client = llm_client
+        # print("llm_client =", self.llm_client)
 
     def process(self, resume_info: Dict[str, Any], job_info: Dict[str, Any]) -> Dict[str, Any]:
         """
@@ -65,9 +66,9 @@ class GapAnalysisAgent:
             只返回JSON。
             格式：
             {{
-                "已具备技能": [],
-                "缺失的技能": [],
-                "匹配度": 0
+                "matched_skills": [],
+                "missing_skills": [],
+                "score": 0
             }}
             候选人：
             {resume_info}
@@ -76,7 +77,16 @@ class GapAnalysisAgent:
             """
 
             response = self.llm_client.invoke(prompt)
-            return extract_json(response.content)
+            result = extract_json(response.content)
+            # print("====== GAP INPUT ======")
+            # print(resume_info)
+            #
+            # print("====== JOB INPUT ======")
+            # print(job_info)
+            # 
+            # print("====== GAP OUTPUT ======")
+            # print(result)
+            return result
             # result: GapInfo = structured_llm.invoke(prompt)
             # return result.model_dump()
             

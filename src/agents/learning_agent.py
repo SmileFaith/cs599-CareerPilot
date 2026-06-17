@@ -87,13 +87,13 @@ class LearningAgent:
             5. 输出JSON
             格式：
             {{
-                "学习内容": [],
-                "预计时长（周）": 0,
-                "每周计划": {{
+                "learning_sequence": [],
+                "estimated_duration_weeks": 0,
+                "weekly_roadmap": {{
                     "week1": [],
                     "week2": []
                 }},
-                "推荐项目": []
+                "recommended_projects": []
             }}
             Gap Report:
             {gap_report}
