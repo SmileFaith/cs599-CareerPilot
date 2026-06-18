@@ -132,7 +132,7 @@ cs599-CareerPilot/
 ├── .env
 └── LICENSE
 ```
-## 测试示例
+## 测试用例
 ### 示例简历技能（可自行准备pdf/docx文件）
 ```text
 Python、FastAPI、MySQL、Git、Linux、Docker
